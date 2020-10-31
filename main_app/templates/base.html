@@ -20,16 +20,12 @@
       </ul>
       <ul class="right">
         <li><a href="/">Home</a></li>
-        <!-- {% if user.is_authenticated %} -->
-        <!-- <li><a href="{% url 'cities_index' %}">View Cities</a></li>
-        <li><a href="{% url 'add_city' %}">Add City</a></li>
-        <li><a href="{% url 'add_post' %}">Add Post</a></li>
-        <li><a href="{% url 'profile' %}">Profile</a></li>
-        <li><a href="{% url 'logout' %}">Log Out</a></li> -->
-        <!-- {% else %} -->
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Log Out</a></li>
+        {% else %}
         <li><a href="{% url 'signup' %}">Sign Up</a></li> 
         <li><a href="{% url 'login' %}">Log In</a></li>
-        <!-- {% endif %} -->
+        {% endif %}
       </ul>
     </nav>
   </header>

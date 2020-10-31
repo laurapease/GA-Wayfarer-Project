@@ -20,14 +20,25 @@
       </ul>
       <ul class="right">
         <li><a href="/">Home</a></li>
-        <li><a href="/about">About</a></li>
-        <!-- {% if user.is_authenticated} -->
-
-
-        <li><a href="/login" class="left brand-logo">Login</a></li>
-        <li><a href="/signup" class="left brand-logo">Sign Up</a></li>
+        <!-- {% if user.is_authenticated %} -->
+        <!-- <li><a href="{% url 'cities_index' %}">View Cities</a></li>
+        <li><a href="{% url 'add_city' %}">Add City</a></li>
+        <li><a href="{% url 'add_post' %}">Add Post</a></li>
+        <li><a href="{% url 'profile' %}">Profile</a></li>
+        <li><a href="{% url 'logout' %}">Log Out</a></li> -->
+        <!-- {% else %} -->
+        <li><a href="{% url 'signup' %}">Sign Up</a></li> 
+        <li><a href="{% url 'login' %}">Log In</a></li>
+        <!-- {% endif %} -->
       </ul>
     </nav>
   </header>
 </body>
+<main class="container">
+  {% block content %}
+  {% endblock %}
+</main>
+<footer class="page-footer">
+  <div class="right">All Rights Reserved, &copy; 2020 Wayfarer &nbsp;</div>
+</footer>
 </html>

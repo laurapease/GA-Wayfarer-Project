@@ -19,7 +19,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('user_profile')
+            return redirect('new_profile')
         else: 
             error_message = 'Invalid sign up - try again'
             form = UserCreationForm()
@@ -28,6 +28,8 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'registration/signup.html', context)
+
+#---------------- PROFILE
 
 def new_profile(request, user_id):
     profile = Profile.objects.get(id=user_id)
@@ -43,4 +45,8 @@ def new_profile(request, user_id):
         form = ProfileForm()
         context = {'form': form}
         return render(request, 'profiles/new.html', context)
-            
+
+def user_profile(request, profile_id):
+    profile = Profile.objects.get(id=profile_id)
+    return render(request, 'profiles/show.html', {'profile': profile})
+

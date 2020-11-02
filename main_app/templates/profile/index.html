@@ -18,6 +18,9 @@ My Profile
             <img src="{{ profile.avatar.url }}">
           </div>
       </div>
+      <a href="{% url 'edit_profile' profile.id %}" type="submit" class="btn-small">
+        Edit
+      </a>
     </div>
   </div>
 

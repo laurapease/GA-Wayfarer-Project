@@ -1,5 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+
 from .models import Profile
 from .forms import ProfileForm
 from django.contrib.auth import login
@@ -34,24 +38,31 @@ def signup(request):
 
 @login_required
 def new_profile(request):
-    # profile = Profile.objects.get(id=user_id)
-
     if request.method == 'POST':
-        profile_form = ProfileForm(request.POST)
-        if profile_form.is_valid():
-            new_profile = profile_form.save(commit=False)
+        form = ProfileForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_profile = form.save(commit=False)
             new_profile.user = request.user
             new_profile.save()
-            return redirect('user_profile', profile_id = new_profile.id)
-        else :
-            return render(request, 'profiles/detail.html', {'profile_form': profile_form})
+            
+            return redirect('user_profile', new_profile.id)
+        else:
+            return render(request, 'profile/new.html', {'form': form})
     else: 
         form = ProfileForm()
         context = {'form': form}
-        return render(request, 'profiles/new.html', context)
+        return render(request, 'profile/new.html', context)
 
 @login_required
 def user_profile(request, profile_id):
-    profile = Profile.objects.get(id=profile_id)
-    return render(request, 'profiles/detail.html', {'profile': profile})
+    profile = Profile.objects.get(user = request.user)
+    return render(request, 'profile/index.html', {'profile': profile})
 
+@login_required
+def profile(request):#also known as profile index
+    print(request.user)
+    profile = Profile.objects.get(user = request.user)
+    # posts = Post.objects.filter(profile=profile)
+    context = {'profile': profile}
+    # 'posts':posts}
+    return render(request,'profile/index.html', context)

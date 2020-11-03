@@ -17,10 +17,12 @@ My Profile
             <p>Join Date: {{ profile.join_date }}</p>
             <img src="{{ profile.avatar.url }}">
           </div>
+          <a href="{% url 'edit_profile' profile.id %}" type="submit" class="btn-small">
+            Edit
+          </a>
       </div>
-      <a href="{% url 'edit_profile' profile.id %}" type="submit" class="btn-small">
-        Edit
-      </a>
+  
+      <h3>View {{ user.username }}'s Posts</h3>
       <div class="card">
         <div class="card-content">
           {% for post in posts %}

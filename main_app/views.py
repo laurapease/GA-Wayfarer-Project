@@ -84,3 +84,17 @@ def view_post(request, post_id):
 
     context = {'post': post}
     return render(request, 'post/show.html', context)
+
+#---------------- CITIES
+
+@login_required
+def cities_index(request):
+    cities = City.objects.all()
+    context = {'cities': cities}
+    return render(request, 'city/index.html', context)
+
+@login_required
+def view_city(request, city_id):
+    city = City.objects.get(id=city_id)
+    context = {'city': city}
+    return render(request, 'city/show.html', context)

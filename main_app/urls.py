@@ -13,6 +13,7 @@ urlpatterns = [
     path('profile/new/', views.new_profile, name='new_profile'),
     path('profile/<int:profile_id>/', views.user_profile, name='user_profile'),
     path('profile/', views.profile, name='profile'),
+    path('profile/<int:profile_id>/edit/', views.edit_profile, name='edit_profile'),
 ]
 
 if settings.DEBUG:

@@ -6,13 +6,12 @@ Post
 
 {% block content %}
 
-  <h1>Post</h1>
+  <h1>{{ post.title }}</h1>
 
   <div class="row">
     <div class="col s12">
       <div class="card">
           <div class="card-content">
-            <span class="card-title">{{ post.title }}</span>
             <a href="{% url 'view_city' post.city.id %}">
               <p>City: {{ post.city }}</p>
             </a>

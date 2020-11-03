@@ -24,7 +24,9 @@ My Profile
       <div class="card">
         <div class="card-content">
           {% for post in posts %}
-          <span class="card-title">{{ post.title }}</span>
+          <a href="{% url 'view_post' post.id %}">
+            <span class="card-title">{{ post.title }}</span>
+          </a>
         </div>
           {% endfor %}
       </div>

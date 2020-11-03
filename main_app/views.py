@@ -75,3 +75,12 @@ def edit_profile(request, profile_id):
         form = ProfileForm(instance=profile)
         context = {'form': form}
         return render(request, 'profile/edit.html', context)
+
+#----------------POSTS
+
+@login_required
+def view_post(request, post_id):
+    post = Post.objects.get(id=post_id)
+
+    context = {'post': post}
+    return render(request, 'post/show.html', context)

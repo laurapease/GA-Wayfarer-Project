@@ -4,11 +4,11 @@
 
   <h1>Add A Post</h1>
 
-  <form action="{% url 'add_post' %}" method='POST'>
+  <form action="" method='POST'>
     {% csrf_token %}
     {{form.as_p}}
 
-    <button class='btn' type='submit'>Add Post</button>
+    <input class='btn' type='submit' value="Add Post">
   </form>
 
 {% endblock %}

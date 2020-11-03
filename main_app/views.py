@@ -98,6 +98,7 @@ def add_post(request):
         context = {'form': form}
         return render(request, 'post/new.html', context)
 
+
 #---------------- CITIES
 
 @login_required

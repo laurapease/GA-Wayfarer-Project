@@ -11,7 +11,11 @@ City Page
   <div class="row">
     <div class="col s12">
       <img src="{{ city.image.url }}">
-      <h2>View Posts</h2>
+        <h2>View Posts</h2>
+
+      <a href="{% url 'add_post' %}" type="submit" class="btn-small">
+        Add A Post
+      </a>
       {% for post in posts %}
       <div class="card">
           <div class="card-content">

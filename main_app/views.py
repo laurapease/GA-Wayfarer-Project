@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Profile, Post, City
-from .forms import ProfileForm
+from .forms import ProfileForm, PostForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -84,6 +84,19 @@ def view_post(request, post_id):
 
     context = {'post': post}
     return render(request, 'post/show.html', context)
+
+@login_required
+def add_post(request):
+    if request.method == 'POST':
+        post_form = PostForm(request.POST)
+        if post_form.is_valid():
+            new_post = post_form.save(commit=False)
+            new_post.save()
+            return redirect('view_city')
+    else: 
+        form = PostForm()
+        context = {'form': form}
+        return render(request, 'post/new.html', context)
 
 #---------------- CITIES
 

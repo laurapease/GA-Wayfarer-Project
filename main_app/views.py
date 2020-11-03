@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Profile
+from .models import Profile, Post, City
 from .forms import ProfileForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -58,9 +58,8 @@ def user_profile(request, profile_id):
 def profile(request):#also known as profile index
     print(request.user)
     profile = Profile.objects.get(user = request.user)
-    # posts = Post.objects.filter(profile=profile)
-    context = {'profile': profile}
-    # 'posts':posts}
+    posts = Post.objects.filter(profile=profile)
+    context = {'profile': profile, 'posts':posts}
     return render(request,'profile/index.html', context)
 
 @login_required

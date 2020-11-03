@@ -21,14 +21,15 @@ My Profile
       <a href="{% url 'edit_profile' profile.id %}" type="submit" class="btn-small">
         Edit
       </a>
-    </div>
-    <div class="card">
-      <div class="card-content">
-        {% for post in posts %}
-        <span class="card-title">{{ post.title }}</span>
+      <div class="card">
+        <div class="card-content">
+          {% for post in posts %}
+          <span class="card-title">{{ post.title }}</span>
+        </div>
+          {% endfor %}
       </div>
-        {% endfor %}
     </div>
+    
   </div>
 
 {% endblock %}

@@ -96,5 +96,6 @@ def cities_index(request):
 @login_required
 def view_city(request, city_id):
     city = City.objects.get(id=city_id)
-    context = {'city': city}
+    posts = Post.objects.all().order_by('-timestamp')
+    context = {'city': city, 'posts': posts}
     return render(request, 'city/show.html', context)

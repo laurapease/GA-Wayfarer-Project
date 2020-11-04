@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.decorators import permission_required
 from django.http import HttpResponse
 from .models import Profile, Post, City
 from .forms import ProfileForm, PostForm
@@ -23,7 +23,7 @@ def signup(request):
             login(request, user)
             return redirect('new_profile')
         else: 
-            error_message = 'Invalid sign up - try again'
+            error_message = 'Username is already in use. Please enter another name.'
             form = UserCreationForm()
             context = {'form': form, 'error_message': error_message}
             return render(request, 'registration/signup.html',context)
@@ -86,19 +86,6 @@ def view_post(request, post_id):
     context = {'post': post}
     return render(request, 'post/show.html', context)
 
-# @login_required
-# def add_post(request, city_id):
-#     form = PostForm(request.POST)
-
-#     if form.is_valid():
-        
-#         new_post = form.save(commit=False)
-#         new_post.user = request.user
-#         new_post.city_id = city_id
-#         new_post.save()
-        
-#     return redirect('view_city', city_id)
-
 @login_required
 def add_post(request, city_id):
     if request.method == 'POST':
@@ -115,6 +102,7 @@ def add_post(request, city_id):
         return render(request, 'post/new.html', context)
 
 @login_required
+
 def delete_post(request, city_id, post_id):
     Post.objects.get(id=post_id).delete()
 

@@ -1,21 +1,22 @@
 {% extends 'base.html' %}
 
 {% block title %}
-My Profile
+Post
 {% endblock %}
 
 {% block content %}
 
-  <h1>Profile Page</h1>
+  <h1>{{ post.title }}</h1>
 
   <div class="row">
     <div class="col s12">
       <div class="card">
           <div class="card-content">
-            <span class="card-title">{{ profile.name }}</span>
-            <p>Current City: {{profile.current_city}}</p>
-            <p>Join Date: {{ profile.join_date }}</p>
-            <img src="{{ profile.avatar }}">
+            <a href="{% url 'view_city' post.city.id %}">
+              <p>City: {{ post.city }}</p>
+            </a>
+            <p>Author: {{post.user}}</p>
+            <p>{{ post.content }}</p>
           </div>
       </div>
     </div>

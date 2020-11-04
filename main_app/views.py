@@ -86,18 +86,33 @@ def view_post(request, post_id):
     context = {'post': post}
     return render(request, 'post/show.html', context)
 
+# @login_required
+# def add_post(request, city_id):
+#     form = PostForm(request.POST)
+
+#     if form.is_valid():
+        
+#         new_post = form.save(commit=False)
+#         new_post.user = request.user
+#         new_post.city_id = city_id
+#         new_post.save()
+        
+#     return redirect('view_city', city_id)
+
 @login_required
 def add_post(request, city_id):
-    form = PostForm(request.POST)
-
-    if form.is_valid():
-        
-        new_post = form.save(commit=False)
-        new_post.user = request.user
-        new_post.city_id = city_id
-        new_post.save()
-        
-    return redirect('view_city', city_id)
+    if request.method == 'POST':
+        post_form = PostForm(request.POST)
+        if post_form.is_valid():
+            new_post = post_form.save(commit=False)
+            new_post.user = request.user
+            new_post.city_id = city_id
+            new_post.save()
+            return redirect('view_city', city_id)
+    else: 
+        form = PostForm()
+        context = {'form': form, 'city_id': city_id}
+        return render(request, 'post/new.html', context)
 
 @login_required
 def delete_post(request, city_id, post_id):

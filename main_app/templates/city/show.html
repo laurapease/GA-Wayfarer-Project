@@ -22,6 +22,7 @@ City Page
               <p>Title: {{post.title}}</p>
             </a>
           </div>
+          {% if request.user == post.user %}
           <div class="card-action">
             <!-- Modal Trigger -->
             <a href="#modal1" class="btn-small modal-trigger red">
@@ -44,6 +45,7 @@ City Page
               Edit
             </a>
           </div>
+          {% endif %}
       </div>
       {% endfor %}
     </div>

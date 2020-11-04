@@ -15,7 +15,7 @@ Post
             <a href="{% url 'view_city' post.city.id %}">
               <p>City: {{ post.city }}</p>
             </a>
-            <p>Author: {{user.username}}</p>
+            <p>Author: {{post.user}}</p>
             <p>{{ post.content }}</p>
           </div>
       </div>

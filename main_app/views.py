@@ -59,7 +59,7 @@ def user_profile(request, profile_id):
 def profile(request):#also known as profile index
     print(request.user)
     profile = Profile.objects.get(user = request.user)
-    posts = Post.objects.filter(profile=profile)
+    posts = Post.objects.filter(user = request.user)
     context = {'profile': profile, 'posts':posts}
     return render(request,'profile/index.html', context)
 
@@ -132,7 +132,7 @@ def cities_index(request):
 @login_required
 def view_city(request, city_id):
     city = City.objects.get(id=city_id)
-    posts = Post.objects.all().order_by('-timestamp')
+    posts = Post.objects.all().order_by('-timestamp').filter(city_id = city_id)
     
 
     post_form = PostForm()

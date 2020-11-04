@@ -6,6 +6,7 @@ from .forms import ProfileForm, PostForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 
@@ -86,19 +87,6 @@ def view_post(request, post_id):
     context = {'post': post}
     return render(request, 'post/show.html', context)
 
-# @login_required
-# def add_post(request, city_id):
-#     form = PostForm(request.POST)
-
-#     if form.is_valid():
-        
-#         new_post = form.save(commit=False)
-#         new_post.user = request.user
-#         new_post.city_id = city_id
-#         new_post.save()
-        
-#     return redirect('view_city', city_id)
-
 @login_required
 def add_post(request, city_id):
     if request.method == 'POST':
@@ -116,24 +104,43 @@ def add_post(request, city_id):
 
 @login_required
 def delete_post(request, city_id, post_id):
-    Post.objects.get(id=post_id).delete()
+    post = Post.objects.get(id=post_id)
+    if request.user == post.user:
+        Post.objects.get(id=post_id).delete()
+        return redirect('view_city', city_id=city_id)
 
-    return redirect('view_city', city_id=city_id)
+    else:
 
 @login_required
 def edit_post(request, post_id):
-    post = Post.objects.get(id=post_id)    
+    post = Post.objects.get(id=post_id)   
+    if request.user == post.user: 
+        if request.method == 'POST':
+            post_form = PostForm(request.POST, instance=post)
+            if post_form.is_valid():
+                updated_post = post_form.save()
+                return redirect('view_post', updated_post.id)
 
-    if request.method == 'POST':
-        post_form = PostForm(request.POST, instance=post)
-        if post_form.is_valid():
-            updated_post = post_form.save()
-            return redirect('view_post', updated_post.id)
+        else: 
+            form = PostForm(instance=post)
+            context = {'form': form}
+            return render(request, 'post/edit.html', context)
+    else:
+        raise PermissionDenied
 
-    else: 
-        form = PostForm(instance=post)
-        context = {'form': form}
-        return render(request, 'post/edit.html', context)
+# def edit_post(request, post_id):
+#     post = Post.objects.get(id=post_id)    
+
+#     if request.method == 'POST':
+#         post_form = PostForm(request.POST, instance=post)
+#         if post_form.is_valid():
+#             updated_post = post_form.save()
+#             return redirect('view_post', updated_post.id)
+
+#     else: 
+#         form = PostForm(instance=post)
+#         context = {'form': form}
+#         return render(request, 'post/edit.html', context)
 
 
 #---------------- CITIES

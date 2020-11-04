@@ -9,13 +9,12 @@ City Page
   <h1>{{city.name}}</h1>
 
   <div class="row">
-    <div class="col s12">
+    <div class="col s6">
       <img src="{{ city.image.url }}">
         <h2>View Posts</h2>
-
-      <a href="{% url 'add_post' %}" type="submit" class="btn-small">
-        Add A Post
-      </a>
+        <!-- <a href="{% url 'add_post' city.id %}" type="submit" class="btn-small">
+          Add A Post
+        </a> -->
       {% for post in posts %}
       <div class="card">
           <div class="card-content">
@@ -25,6 +24,15 @@ City Page
           </div>
       </div>
       {% endfor %}
+    </div>
+  
+    <div class="col s6">
+      <form action="{% url 'add_post' city.id %}" method='POST'>
+        {% csrf_token %}
+        {{post_form.as_p}}
+    
+        <input class='btn' type='submit' value="Add Post">
+      </form>
     </div>
   </div>
 

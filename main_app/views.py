@@ -86,17 +86,22 @@ def view_post(request, post_id):
     return render(request, 'post/show.html', context)
 
 @login_required
-def add_post(request):
-    if request.method == 'POST':
-        post_form = PostForm(request.POST)
-        if post_form.is_valid():
-            new_post = post_form.save(commit=False)
-            new_post.save()
-            return redirect('view_city')
-    else: 
-        form = PostForm()
-        context = {'form': form}
-        return render(request, 'post/new.html', context)
+def add_post(request, city_id):
+    form = PostForm(request.POST)
+
+    if form.is_valid():
+        
+        new_post = form.save(commit=False)
+        new_post.user = request.user
+        new_post.city_id = city_id
+        new_post.save()
+        
+    return redirect('view_city', city_id)
+
+    # else: 
+    #     form = PostForm()
+    #     context = {'form': form}
+    #     return render(request, 'post/new.html', context)
 
 
 #---------------- CITIES
@@ -111,5 +116,8 @@ def cities_index(request):
 def view_city(request, city_id):
     city = City.objects.get(id=city_id)
     posts = Post.objects.all().order_by('-timestamp')
-    context = {'city': city, 'posts': posts}
+    
+
+    post_form = PostForm()
+    context = {'city': city, 'posts': posts, 'post_form': post_form}
     return render(request, 'city/show.html', context)

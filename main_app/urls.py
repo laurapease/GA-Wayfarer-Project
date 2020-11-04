@@ -13,11 +13,11 @@ urlpatterns = [
     path('profile/new/', views.new_profile, name='new_profile'),
     path('profile/<int:profile_id>/', views.user_profile, name='user_profile'),
     path('profile/', views.profile, name='profile'),
-    path('post/add_post/', views.add_post, name='add_post'),
+    path('city/<int:city_id>/add_post/', views.add_post, name='add_post'),
     path('profile/<int:profile_id>/edit/', views.edit_profile, name='edit_profile'),
     path('post/<int:post_id>/', views.view_post, name='view_post'),
     path('cities/', views.cities_index, name='cities_index'),
-    path('city/<int:city_id>', views.view_city, name='view_city'),
+    path('city/<int:city_id>/', views.view_city, name='view_city'),
 ]
 
 if settings.DEBUG:

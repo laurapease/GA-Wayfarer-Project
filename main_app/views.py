@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import permission_required
+from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from .models import Profile, Post, City
 from .forms import ProfileForm, PostForm
@@ -66,16 +66,19 @@ def profile(request):#also known as profile index
 @login_required
 def edit_profile(request, profile_id):
     profile = Profile.objects.get(id=profile_id)
-
-    if request.method == 'POST':
-        profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
-        if profile_form.is_valid():
-            updated_profile = profile_form.save()
-            return redirect('profile')
-    else:
-        form = ProfileForm(instance=profile)
-        context = {'form': form}
-        return render(request, 'profile/edit.html', context)
+    if request.user == profile.user:
+        if request.method == 'POST':
+            profile_form = ProfileForm(request.POST, request.FILES, instance=profile)
+            if profile_form.is_valid():
+                updated_profile = profile_form.save()
+                return redirect('profile')
+        else:
+            form = ProfileForm(instance=profile)
+            context = {'form': form}
+            return render(request, 'profile/edit.html', context)
+    
+    else: 
+        raise PermissionDenied("You are not authorized to edit")
 
 #----------------POSTS
 
@@ -102,26 +105,37 @@ def add_post(request, city_id):
         return render(request, 'post/new.html', context)
 
 @login_required
-
 def delete_post(request, city_id, post_id):
-    Post.objects.get(id=post_id).delete()
+    post = Post.objects.get(id=post_id)
 
-    return redirect('view_city', city_id=city_id)
+    if request.user == post.user:
+        # Post.objects.get(id=post_id).delete()
+        post.delete()
+    
+        return redirect('view_city', city_id=city_id)
+
+    else: 
+        raise PermissionDenied("You are not authorized to delete")
 
 @login_required
 def edit_post(request, post_id):
     post = Post.objects.get(id=post_id)    
 
-    if request.method == 'POST':
-        post_form = PostForm(request.POST, instance=post)
-        if post_form.is_valid():
-            updated_post = post_form.save()
-            return redirect('view_post', updated_post.id)
+    if request.user == post.user:
+
+        if request.method == 'POST':
+            post_form = PostForm(request.POST, instance=post)
+            if post_form.is_valid():
+                updated_post = post_form.save()
+                return redirect('view_post', updated_post.id)
+
+        else: 
+            form = PostForm(instance=post)
+            context = {'form': form}
+            return render(request, 'post/edit.html', context)
 
     else: 
-        form = PostForm(instance=post)
-        context = {'form': form}
-        return render(request, 'post/edit.html', context)
+        raise PermissionDenied("You are not authorized to edit")
 
 
 #---------------- CITIES

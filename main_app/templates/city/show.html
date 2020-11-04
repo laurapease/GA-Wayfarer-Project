@@ -22,6 +22,28 @@ City Page
               <p>Title: {{post.title}}</p>
             </a>
           </div>
+          <div class="card-action">
+            <!-- Modal Trigger -->
+            <a href="#modal1" class="btn-small modal-trigger red">
+              Delete
+            </a>
+    
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+              <div class="modal-content">
+                <h4>Delete Post Confirmation</h4>
+                <p>Are you sure you want to delete this post?</p>
+              </div>
+              <div class="modal-footer">
+                <a href="{% url 'delete_post' post.id %}" class="modal-close waves-effect waves-green btn-flat">Confirm</a>
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+              </div>
+            </div>
+    
+            <a href="{% url 'edit_post' post.id %}" type="submit" class="btn-small">
+              Edit
+            </a>
+          </div>
       </div>
       {% endfor %}
     </div>
@@ -35,5 +57,12 @@ City Page
       </form>
     </div>
   </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const elems = document.querySelectorAll('.modal');
+      const instances = M.Modal.init(elems);
+    });
+  </script>
 
 {% endblock %}

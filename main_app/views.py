@@ -98,10 +98,26 @@ def add_post(request, city_id):
         
     return redirect('view_city', city_id)
 
-    # else: 
-    #     form = PostForm()
-    #     context = {'form': form}
-    #     return render(request, 'post/new.html', context)
+@login_required
+def delete_post(request, post_id):
+    Post.objects.get(id=post_id).delete()
+
+    return redirect('view_city')
+
+@login_required
+def edit_post(request, post_id):
+    post = Post.objects.get(id=post_id)    
+
+    if request.method == 'POST':
+        post_form = PostForm(request.POST, instance=post)
+        if post_form.is_valid():
+            updated_post = post_form.save()
+            return redirect('view_post', updated_post.id)
+
+    else: 
+        form = PostForm(instance=post)
+        context = {'form': form}
+        return render(request, 'post/edit.html', context)
 
 
 #---------------- CITIES

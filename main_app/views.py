@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+
 from django.http import HttpResponse
 from .models import Profile, Post, City
 from .forms import ProfileForm, PostForm
@@ -99,10 +100,10 @@ def add_post(request, city_id):
     return redirect('view_city', city_id)
 
 @login_required
-def delete_post(request, post_id):
+def delete_post(request, city_id, post_id):
     Post.objects.get(id=post_id).delete()
 
-    return redirect('view_city')
+    return redirect('view_city', city_id=city_id)
 
 @login_required
 def edit_post(request, post_id):

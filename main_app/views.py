@@ -57,8 +57,7 @@ def user_profile(request, profile_id):
     return render(request, 'profile/index.html', {'profile': profile})
 
 @login_required
-def profile(request):#also known as profile index
-    print(request.user)
+def profile(request, slug):#also known as profile index
     profile = Profile.objects.get(user = request.user)
     posts = Post.objects.filter(user = request.user)
     

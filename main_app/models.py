@@ -25,6 +25,11 @@ class Profile(models.Model):
     join_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=100, unique=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.user.username, allow_unicode=True)
+        return super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.user.username

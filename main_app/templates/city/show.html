@@ -21,6 +21,12 @@ City Page
             <a href="{% url 'view_post' post.id %}">
               <p>Title: {{post.title}}</p>
             </a>
+            <p>{{post.content|truncatechars:7}}</p>
+            {% if post.content|truncatechars:7 %}
+            <a href="{% url 'view_post' post.id %}">
+              View rest of post here
+            </a>
+            {% endif %}
           </div>
           {% if request.user == post.user %}
           <div class="card-action">
@@ -49,15 +55,6 @@ City Page
       </div>
       {% endfor %}
     </div>
-  
-    <!-- <div class="col s6">
-      <form action="{% url 'add_post' city.id %}" method='POST'>
-        {% csrf_token %}
-        {{post_form.as_p}}
-    
-        <input class='btn' type='submit' value="Add Post">
-      </form>
-    </div> -->
   </div>
 
   <script>

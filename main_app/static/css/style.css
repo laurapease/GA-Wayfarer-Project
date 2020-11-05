@@ -117,6 +117,7 @@ footer {
 .btn-small {
   background-color: #b36b5e;
   color: black;
+  border-radius: 25px;
 }
 
 .btn-small:hover {
@@ -130,4 +131,13 @@ footer {
 
 label {
   font-size: 15px;
+}
+
+.button-box {
+  padding: 10px;
+  text-align: right;
+}
+
+.city-img {
+  width: 80%;
 }

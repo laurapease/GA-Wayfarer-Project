@@ -6,15 +6,19 @@
 
 {% block content %}
 
-  <h1>{{city.name}}</h1>
 
   <div class="row">
-    <div class="col s6">
-      <img src="{{ city.image.url }}">
-        <h2>Posts about {{city.name}}</h2>
+    <div class="col s10">
+      <h1>{{city.name}}</h1>
+      <img class="city-img" src="{{ city.image.url }}">
+
         <a href="{% url 'add_post' city.id %}" type="submit" class="btn-small">
-          Add A Post
+          Write About {{city.name}}
         </a>
+    </div>
+
+    <div class="col s8">
+        <h2>Posts about {{city.name}}</h2>
       {% for post in posts %}
       <div class="card">
           <div class="card-content">
@@ -23,9 +27,9 @@
             </a>
           </div>
           {% if request.user == post.user %}
-          <div class="card-action">
+          <div class="button-box">
             <!-- Modal Trigger -->
-            <a href="#modal1" class="btn-small modal-trigger red">
+            <a href="#modal1" class="btn-small modal-trigger red darken-4">
               Delete
             </a>
     
@@ -49,6 +53,7 @@
       </div>
       {% endfor %}
     </div>
+
   
     <!-- <div class="col s6">
       <form action="{% url 'add_post' city.id %}" method='POST'>

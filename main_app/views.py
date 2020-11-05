@@ -61,6 +61,7 @@ def profile(request):#also known as profile index
     print(request.user)
     profile = Profile.objects.get(user = request.user)
     posts = Post.objects.filter(user = request.user)
+    
     context = {'profile': profile, 'posts':posts}
     return render(request,'profile/index.html', context)
 
@@ -110,7 +111,6 @@ def delete_post(request, city_id, post_id):
     post = Post.objects.get(id=post_id)
 
     if request.user == post.user:
-        # Post.objects.get(id=post_id).delete()
         post.delete()
     
         return redirect('view_city', city_id=city_id)
@@ -148,9 +148,10 @@ def cities_index(request):
     return render(request, 'city/index.html', context)
 
 @login_required
-def view_city(request, city_id):
-    city = City.objects.get(id=city_id)
-    posts = Post.objects.all().order_by('-timestamp').filter(city_id = city_id)
+def view_city(request, slug):
+
+    city = City.objects.get(slug=slug)
+    posts = Post.objects.filter(city=city).order_by('-timestamp')
     paginator = Paginator(posts, 10)
     page = request.GET.get('page')
     posts = paginator.get_page(page)

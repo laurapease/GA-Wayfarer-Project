@@ -19,8 +19,8 @@ urlpatterns = [
     path('profile/<int:profile_id>/edit/', views.edit_profile, name='edit_profile'),
     path('post/<int:post_id>/', views.view_post, name='view_post'),
     path('cities/', views.cities_index, name='cities_index'),
-    # path('city/<slug:slug>/<int:city_id>/', views.view_city, name='view_city'),
-    path('city/<int:city_id>/', views.view_city, name='view_city'),
+    path('city/<slug:slug>/', views.view_city, name='view_city'),
+    # path('city/<int:city_id>/', views.view_city, name='view_city'),
 ]
 
 if settings.DEBUG:

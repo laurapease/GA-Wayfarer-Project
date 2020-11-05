@@ -13,7 +13,7 @@ class City(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.name)
+            self.slug = slugify(self.name, allow_unicode=True)
         return super(City, self).save(*args, **kwargs)
 
     def __str__(self):

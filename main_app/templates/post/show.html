@@ -6,23 +6,18 @@ Post
 
 {% block content %}
 
-  <h1>{{ post.title }}</h1>
+  <h2>{{ post.title }}</h2>
 
   <div class="row">
     <div class="col s12">
       <div class="card">
           <div class="card-content">
-            <a href="{% url 'view_city' post.city.id %}">
-              <p>City: {{ post.city }}</p>
-            </a>
-<<<<<<< HEAD
-            <p>Author: {{ post.user }}</p>
-=======
-            <p>Author: {{post.user}}</p>
->>>>>>> submaster
-            <p>{{ post.content }}</p>
+           <h5>"{{ post.content }}"</h5>
+            <p>Submitted by: {{post.user}}</p>
+            <p>{{post.timestamp}}</p>
           </div>
-      </div>
+        </div>
+      <h6>Read more posts about <a href="{% url 'view_city' post.city.id %}">{{ post.city }}</a></h6>
     </div>
   </div>
 

@@ -12,9 +12,12 @@ Post
     <div class="col s12">
       <div class="card">
           <div class="card-content">
-           <h5>"{{ post.content }}"</h5>
-            <p>Submitted by: {{post.user}}</p>
-            <p>{{post.timestamp}}</p>
+            <a href="{% url 'view_city' post.city.id %}">
+            <img src="{{post.user.profile.avatar.url}}" width=50 height=70>
+            <p>City: {{ post.city }}</p>
+            </a>
+            <p>Author: {{ post.user }}</p>
+            <p> {{ post.content }}</p>
           </div>
         </div>
       <h6>See more posts about <a href="{% url 'view_city' post.city.id %}">{{ post.city }}</a></h6>

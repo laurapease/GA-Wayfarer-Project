@@ -6,8 +6,11 @@
 
   <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn" value="Edit Profile"> 
+    Current City: <input type="text" name="current_city" value="{{current_city}}" maxlength="100" required id="id_current_city">
+    {{profile.current_city}}
+    <label for="id_avatar">Avatar:</label><br>
+    <input type="file" name="avatar" accept="image/*" id="id_avatar"><br> 
+    <input type="submit" class="btn" value="Edit Profile"><br>
   </form>
 
 {% endblock %}

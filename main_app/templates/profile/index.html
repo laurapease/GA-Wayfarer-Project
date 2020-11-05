@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-My Profile
+Profile Home
 {% endblock %}
 
 {% block content %}
@@ -34,6 +34,7 @@ My Profile
           <a href="{% url 'view_post' post.id %}">
             <span class="card-title">{{ post.title }}</span>
           </a>
+          <a href="{% url 'view_city' post.city.id %}">{{ post.city }}</a>
         </div>
           {% endfor %}
       </div>

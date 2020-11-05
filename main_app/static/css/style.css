@@ -2,7 +2,12 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background-image: url(/static/images/pexels-iconcom-220634.jpg);
+  font-family: 'Karla', sans-serif;
+  background-image: url(/static/images/pexels-la-miko-3616764.jpg);
+  background-position: center center; 
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover; 
 }
 
 main {
@@ -59,6 +64,17 @@ footer {
   font-family: 'Karla', sans-serif;
   font-size: 50px;
   color: #C1BB93;
-  /* color: #b36b5e; */
+}
+
+.nav-links:hover {
+  background-color: transparent;
+  transition: .3s;
+  color: #b36b5e;
+}
+
+.left.brand-logo:hover {
+  background-color: transparent;
+  color: #b36b5e;
+  transition: .3s;
 }
 

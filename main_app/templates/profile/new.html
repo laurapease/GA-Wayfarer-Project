@@ -7,7 +7,7 @@ Set Up Account
 {% block content %}
 
   <h1>Welcome!</h1>
-  <h6>Finish setting your account up below.</h6>
+  <h6>Finish setting your account up below:</h6>
 
   <form method="POST" action="{% url 'new_profile' %}" enctype="multipart/form-data">
     {% csrf_token %}

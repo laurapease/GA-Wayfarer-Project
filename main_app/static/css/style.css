@@ -2,6 +2,7 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-image: url(/static/images/pexels-iconcom-220634.jpg);
 }
 
 main {
@@ -49,6 +50,7 @@ footer {
   font-size: 52px;
   font-family: 'Reenie Beanie', cursive;
   text-transform: uppercase;
+  margin-left: -10px;
 }
 
 .hero-header {

@@ -5,7 +5,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wayfarer</title>
+  <title>Wayfarer | {% block title %}{% endblock %}</title>
   <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
@@ -21,7 +21,7 @@
   <header class="navbar-fixed">
     <nav>
       <ul>
-        <li><a href="/" class="left brand-logo">&nbsp&nbsp Wayfarer</a></li>
+        <li><a href="/" class="left brand-logo">&nbsp Wayfarer</a></li>
       </ul>
       <ul class="right">
         <li><a class="nav-links" href="/">Home</a></li>

@@ -6,6 +6,7 @@ from .forms import ProfileForm, PostForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -150,8 +151,9 @@ def cities_index(request):
 def view_city(request, city_id):
     city = City.objects.get(id=city_id)
     posts = Post.objects.all().order_by('-timestamp').filter(city_id = city_id)
+    paginator = Paginator(posts, 10)
+    page = request.GET.get('page')
+    posts = paginator.get_page(page)
     
-
-    post_form = PostForm()
-    context = {'city': city, 'posts': posts, 'post_form': post_form}
+    context = {'city': city, 'posts': posts}
     return render(request, 'city/show.html', context)

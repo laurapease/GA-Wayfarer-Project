@@ -61,7 +61,7 @@ footer {
 }
 
 .hero-header {
-  margin-top: -120px;
+  margin-top: -150px;
   font-family: 'Karla', sans-serif;
   font-size: 30px;
   color: #C1BB93;
@@ -99,25 +99,40 @@ footer {
 
 #about-wayfarer1 {
   color: #C1BB93;
+  margin: 10px 0 0 30px;
+
 }
 
 #about-wayfarer2 {
   color: #C1BB93;
-  margin: 10px 0 0 30px;
+  margin: 10px 0 0 60px;
 }
 
 #about-wayfarer3 {
   color: #C1BB93;
-  margin: 10px 0 0 50px;
+  margin: 10px 0 0 90px;
 }
 
 #about-wayfarer4 {
   color: #C1BB93;
-  margin: 10px 0 0 70px;
+  margin: 10px 0 0 120px;
 }
 
 #about-wayfarer5 {
   color: #C1BB93;
-  margin: 10px 0 0 90px;
+  margin: 10px 0 0 150px;
 }
 
+#about-wayfarer6 {
+  color: #C1BB93;
+  margin: 10px 0 0 180px;
+}
+
+#about-wayfarer7 {
+  color: #C1BB93;
+  margin: 10px 0 0 210px;
+}
+
+.footer-test {
+  color: black;
+}

@@ -23,15 +23,15 @@ My Profile
       </div>
   
       <h3>View {{ user.username }}'s Posts</h3>
+      {% for post in posts %}
       <div class="card">
         <div class="card-content">
-          {% for post in posts %}
           <a href="{% url 'view_post' post.id %}">
             <span class="card-title">{{ post.title }}</span>
           </a>
         </div>
-          {% endfor %}
       </div>
+      {% endfor %}
     </div>
     
   </div>

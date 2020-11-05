@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
 My Profile
@@ -15,7 +16,11 @@ My Profile
             <span class="card-title">{{ profile.name }}</span>
             <p>Current City: {{profile.current_city}}</p>
             <p>Join Date: {{ profile.join_date }}</p>
+    {% if profile.avatar %}
             <img src="{{ profile.avatar.url }}">
+    {% else %}
+            <img src="{% static 'wayfarer/images/defaultimg.jpg' %}">
+    {% endif %}
           </div>
           <a href="{% url 'edit_profile' profile.id %}" type="submit" class="btn-small">
             Edit

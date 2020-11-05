@@ -19,6 +19,14 @@ nav {
   box-shadow: none;
 }
 
+a {
+  color: #b36b5e;
+}
+
+a:hover {
+  color: #969171;
+  transition: 0.2s;
+}
 
 footer {
   padding-top: 0;
@@ -76,5 +84,43 @@ footer {
   background-color: transparent;
   color: #b36b5e;
   transition: .3s;
+}
+
+.profile-header {
+  font-size: 28px;
+  text-transform: lowercase;
+}
+
+.profile-avatar {
+  width: 95%;
+  height: 95%;
+  border-radius: 10%;
+  margin-right: 0;
+}
+
+.profile-posts-header {
+  font-size: 40px;
+  text-transform: lowercase;
+}
+
+.profile-card {
+  text-align: center;
+  width: 100%;
+  border-radius: 50px;
+}
+
+.edit-btn {
+  text-align: center;
+  padding: 25px;
+}
+
+.btn-small {
+  background-color: #b36b5e;
+  color: black;
+}
+
+.btn-small:hover {
+  background-color: #b36b5e;
+  color: white;
 }
 

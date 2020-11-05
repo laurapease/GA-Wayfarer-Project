@@ -29,6 +29,8 @@ footer {
 
 .page-footer {
   background-color: transparent;
+  display: flex;
+  justify-content: space-between;
 }
 
 .nav-links {
@@ -59,11 +61,11 @@ footer {
 }
 
 .hero-header {
-  text-align: center;
-  margin-top: -70px;
+  margin-top: -120px;
   font-family: 'Karla', sans-serif;
-  font-size: 50px;
+  font-size: 30px;
   color: #C1BB93;
+  
 }
 
 .nav-links:hover {
@@ -76,5 +78,46 @@ footer {
   background-color: transparent;
   color: #b36b5e;
   transition: .3s;
+}
+
+.about {
+  color: white;
+}
+
+.about-header {
+  font-family: 'Reenie Beanie', cursive;
+}
+
+.about-container {
+  background-color: transparent;
+}
+
+.test {
+  background-color: #D7D4D1;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+#about-wayfarer1 {
+  color: #C1BB93;
+}
+
+#about-wayfarer2 {
+  color: #C1BB93;
+  margin: 10px 0 0 30px;
+}
+
+#about-wayfarer3 {
+  color: #C1BB93;
+  margin: 10px 0 0 50px;
+}
+
+#about-wayfarer4 {
+  color: #C1BB93;
+  margin: 10px 0 0 70px;
+}
+
+#about-wayfarer5 {
+  color: #C1BB93;
+  margin: 10px 0 0 90px;
 }
 

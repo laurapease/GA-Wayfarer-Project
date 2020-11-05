@@ -3,6 +3,11 @@ body {
   min-height: 100vh;
   flex-direction: column;
   font-family: 'Karla', sans-serif;
+  background-image: url(/static/images/pexels-la-miko-3616764.jpg);
+  background-position: center center; 
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover; 
 }
 
 main {

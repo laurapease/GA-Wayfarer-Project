@@ -35,12 +35,14 @@ My Profile
     </div>
     <div class="col s6">
       <h3>Cities Contributed Posts To:</h3>
-      {% for post in posts %}
+      {% for post in cities_with_uniq_names %}
+      
       <div class="card">
           <div class="card-content">
             <span class="card-title">{{ post.city }}</span>
           </div>
       </div>
+        
       {% endfor %}
     </div>
   </div>

@@ -21,7 +21,7 @@
             <a href="{% url 'view_post' post.id %}">
               <p>Title: {{post.title}}</p>
             </a>
-            <p>{{post.content|truncatechars:7}}</p>
+            <p>{{post.content|truncatechars:1000}}</p>
             
             <a href="{% url 'view_post' post.id %}">
               View rest of post here

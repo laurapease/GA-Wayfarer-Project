@@ -27,6 +27,7 @@ City Page
               View rest of post here
             </a>
             {% endif %}
+            <p>Published: {{ post.timestamp|timesince }} ago</p>
           </div>
           {% if request.user == post.user %}
           <div class="card-action">

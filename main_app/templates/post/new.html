@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
+{% block title %}
+Add a Post
+{% endblock %}
+
 {% block content %}
 
-  <h1>Add A Post</h1>
+  <h1>Add a Post</h1>
 
   <form method='POST'>
     {% csrf_token %}

@@ -2,22 +2,63 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  background-image: url(/static/images/pexels-iconcom-220634.jpg);
 }
 
 main {
   flex: 1 0 auto;
 }
 
+nav {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+
 footer {
   padding-top: 0;
   text-align: right;
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 22px;
 }
 
-h2 {
-  margin: 0;
-  display: inline-block
+.page-footer {
+  background-color: transparent;
 }
 
-#add-post {
-  float: right;
+.nav-links {
+  color: black;
+  font-size: 36px;
+  font-family: 'Reenie Beanie', cursive;
 }
+
+#header-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+.video-container {
+  width: 50%;
+}
+
+.left.brand-logo {
+  color: black;
+  font-size: 52px;
+  font-family: 'Reenie Beanie', cursive;
+  text-transform: uppercase;
+  margin-left: -10px;
+}
+
+.hero-header {
+  text-align: center;
+  margin-top: -70px;
+  font-family: 'Karla', sans-serif;
+  font-size: 50px;
+  color: #C1BB93;
+  /* color: #b36b5e; */
+}
+

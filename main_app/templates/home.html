@@ -1,11 +1,21 @@
 {% extends 'base.html' %}
 
 {% block title %}
-Welcome to Wayfarer
+Home
 {% endblock %}
 
 {% block content %}
 
-  <h1>Welcome to Wayfarer</h1>
+<main class="video-container">
+  <video autoplay muted loop id="header-video">
+    <source src="/static/videos/balloonsvideo.mp4" type="video/mp4">
+  </video>
+</main>
+
+
+  <h1 class="hero-header">a place to discuss travel</h1>
+
+
+
 
 {% endblock %}

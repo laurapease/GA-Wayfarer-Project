@@ -104,10 +104,11 @@ def add_post(request, city_id):
             new_post.user = request.user
             new_post.city_id = city_id
             new_post.save()
-            return redirect('view_city', city_id)
+            return redirect('view_post', new_post.id)
     else: 
         form = PostForm()
-        context = {'form': form, 'city_id': city_id}
+        context = {'form': form}
+        # , 'city_slug': city_slug}
         return render(request, 'post/new.html', context)
 
 @login_required
@@ -158,10 +159,10 @@ def cities_index(request):
     return render(request, 'city/index.html', context)
 
 @login_required
-def view_city(request, city_id):
+def view_city(request, slug):
 
-    city = City.objects.get(id = city_id)
-    posts = Post.objects.filter(city_id =city_id).order_by('-timestamp')
+    city = City.objects.get(slug=slug)
+    posts = Post.objects.filter(city=city).order_by('-timestamp')
     paginator = Paginator(posts, 10)
     page = request.GET.get('page')
     posts = paginator.get_page(page)

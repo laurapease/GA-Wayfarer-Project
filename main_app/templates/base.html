@@ -25,6 +25,7 @@
       </ul>
       <ul class="right">
         <li><a class="nav-links" href="/">Home</a></li>
+
         {% if user.is_authenticated %}
         <li><a class="nav-links" href="{% url 'cities_index' %}">Cities</a></li>
         <li><a class="nav-links" href="{% url 'profile' %}">My Profile</a></li>
@@ -41,7 +42,9 @@
   {% block content %}
   {% endblock %}
 </main>
-<footer class="page-footer">
+<footer class="page-footer">        
+<a class="about" href="{% url 'about' %}">About the Developers</a>
+
   <div class="right">All Rights Reserved, &copy; 2020 Wayfarer &nbsp;</div>
 </footer>
 </html>

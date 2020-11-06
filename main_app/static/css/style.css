@@ -33,6 +33,7 @@ footer {
   text-align: right;
   font-family: 'Reenie Beanie', cursive;
   font-size: 22px;
+  position: bottom;
 }
 
 .page-footer {

@@ -6,20 +6,21 @@ Post
 
 {% block content %}
 
-  <h1>{{ post.title }}</h1>
+  <h2>{{ post.title }}</h2>
 
   <div class="row">
     <div class="col s12">
       <div class="card">
           <div class="card-content">
+          <img src="{{post.user.profile.avatar.url}}" width=50 height=70>
+          <p>"{{ post.content }}"</p>
             <a href="{% url 'view_city' post.city.id %}">
-            <img src="{{post.user.profile.avatar.url}}" width=50 height=70>
-            <p>City: {{ post.city }}</p>
             </a>
-            <p>Author: {{ post.user }}</p>
-            <p> {{ post.content }}</p>
+            <p>Submitted by: {{ post.user }} on {{ post.timestamp }}</p>
+
           </div>
-      </div>
+        </div>
+      <h6>See more posts about <a href="{% url 'view_city' post.city.id %}">{{ post.city }}</a></h6>
     </div>
   </div>
 

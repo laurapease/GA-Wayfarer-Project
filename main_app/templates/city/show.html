@@ -6,20 +6,24 @@
 
 {% block content %}
 
-  <h1>{{city.name}}</h1>
 
   <div class="row">
-    <div class="col s6">
-      <img src="{{ city.image.url }}">
-        <h2>View Posts</h2>
+    <div class="col s10">
+      <h1>{{city.name}}</h1>
+      <img class="city-img" src="{{ city.image.url }}">
+
         <a href="{% url 'add_post' city.id %}" type="submit" class="btn-small">
-          Add A Post
+          Write About {{city.name}}
         </a>
+    </div>
+
+    <div class="col s8">
+        <h2>Posts about {{city.name}}</h2>
       {% for post in posts %}
       <div class="card">
           <div class="card-content">
             <a href="{% url 'view_post' post.id %}">
-              <p>Title: {{post.title}}</p>
+              <p>{{post.title}}</a> by {{post.user}}</p>
             </a>
             <p>{{post.content|truncatechars:7}}</p>
             
@@ -30,9 +34,9 @@
             <p>Published: {{ post.timestamp|timesince }} ago</p>
           </div>
           {% if request.user == post.user %}
-          <div class="card-action">
+          <div class="button-box">
             <!-- Modal Trigger -->
-            <a href="#modal1" class="btn-small modal-trigger red">
+            <a href="#modal1" class="btn-small modal-trigger red darken-4">
               Delete
             </a>
     
@@ -65,6 +69,16 @@
         {% endif %}
       {% endif %}
     </div>
+
+  
+    <!-- <div class="col s6">
+      <form action="{% url 'add_post' city.id %}" method='POST'>
+        {% csrf_token %}
+        {{post_form.as_p}}
+    
+        <input class='btn' type='submit' value="Add Post">
+      </form>
+    </div> -->
   </div>
 
   <script>

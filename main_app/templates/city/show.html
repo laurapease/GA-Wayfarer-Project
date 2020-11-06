@@ -12,12 +12,12 @@
       <h1>{{city.name}}</h1>
       <img class="city-img" src="{{ city.image.url }}">
 
-        <a href="{% url 'add_post' city.id %}" type="submit" class="btn-small">
-          Write About {{city.name}}
-        </a>
     </div>
 
     <div class="col s8">
+            <a href="{% url 'add_post' city.id %}" type="submit" class="btn-small">
+          Write About {{city.name}}
+        </a>
         <h2>Posts about {{city.name}}</h2>
       {% for post in posts %}
       <div class="card">

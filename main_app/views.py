@@ -14,6 +14,9 @@ from django.core.exceptions import PermissionDenied
 def home(request):
     return render(request, 'home.html')
 
+def about(request):
+    return render(request, 'about.html')    
+
 #----------SIGNUP USER
 def signup(request):
     error_message = ''

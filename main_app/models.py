@@ -14,7 +14,7 @@ class City(models.Model):
 
 class Profile(models.Model):
     current_city = models.CharField(max_length=100)
-    avatar = models.ImageField(upload_to='images')
+    avatar = models.ImageField(upload_to='images', blank=True)
     join_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)

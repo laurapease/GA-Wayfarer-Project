@@ -2,12 +2,22 @@
 
 {% block content %}
 
-  <h1>Edit Profile</h1>
 
-  <form method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" class="btn" value="Edit Profile"> 
-  </form>
+    <div class="row">
+      <div class="col s12">
+        <div class="card">
+          <div class="card-content">
+          <h3>Edit Profile</h3>
+
+        <form method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" class="btn-small" value="Submit Changes"> 
+        </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
 {% endblock %}

@@ -6,12 +6,16 @@ from .forms import ProfileForm, PostForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 
 # Create your views here.
 
 #-----------STATIC PAGES
 def home(request):
     return render(request, 'home.html')
+
+def about(request):
+    return render(request, 'about.html')    
 
 #----------SIGNUP USER
 def signup(request):
@@ -119,7 +123,13 @@ def delete_post(request, city_id, post_id):
 
 @login_required
 def edit_post(request, post_id):
-    post = Post.objects.get(id=post_id)    
+    post = Post.objects.get(id=post_id)   
+    if request.user == post.user: 
+        if request.method == 'POST':
+            post_form = PostForm(request.POST, instance=post)
+            if post_form.is_valid():
+                updated_post = post_form.save()
+                return redirect('view_post', updated_post.id)
 
     if request.user == post.user:
 

@@ -2,22 +2,202 @@ body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
+  font-family: 'Karla', sans-serif;
+  background-image: url(/static/images/pexels-la-miko-3616764.jpg);
+  background-position: center center; 
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover; 
 }
 
 main {
   flex: 1 0 auto;
 }
 
+nav {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+a {
+  color: #b36b5e;
+}
+
+a:hover {
+  color: black;
+  transition: 0.2s;
+}
+
 footer {
   padding-top: 0;
   text-align: right;
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 22px;
+  position: bottom;
 }
 
-h2 {
-  margin: 0;
-  display: inline-block
+.page-footer {
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
 }
 
-#add-post {
-  float: right;
+.nav-links {
+  color: black;
+  font-size: 36px;
+  font-family: 'Reenie Beanie', cursive;
+}
+
+#header-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+}
+
+.video-container {
+  width: 50%;
+}
+
+.left.brand-logo {
+  color: black;
+  font-size: 52px;
+  font-family: 'Reenie Beanie', cursive;
+  text-transform: uppercase;
+  margin-left: -10px;
+}
+
+.hero-header {
+  margin-top: -150px;
+  font-family: 'Karla', sans-serif;
+  font-size: 30px;
+  color: #C1BB93;
+  
+}
+
+.nav-links:hover {
+  background-color: transparent;
+  transition: .3s;
+  color: #b36b5e;
+}
+
+.left.brand-logo:hover {
+  background-color: transparent;
+  color: #b36b5e;
+  transition: .3s;
+}
+
+
+.profile-header {
+  font-size: 28px;
+  text-transform: lowercase;
+}
+
+.profile-avatar {
+  width: 95%;
+  height: 95%;
+  border-radius: 10%;
+  margin-right: 0;
+}
+
+.profile-posts-header {
+  font-size: 40px;
+  text-transform: lowercase;
+}
+
+.profile-card {
+  text-align: center;
+  width: 100%;
+  border-radius: 50px;
+}
+
+.edit-btn {
+  text-align: center;
+  padding: 25px;
+}
+
+.btn-small {
+  background-color: #b36b5e;
+  color: black;
+  border-radius: 25px;
+}
+
+.btn-small:hover {
+  background-color: #b36b5e;
+  color: white;
+}
+
+#id_avatar {
+  padding: 20px;
+}
+
+label {
+  font-size: 15px;
+}
+
+.button-box {
+  padding: 10px;
+  text-align: right;
+}
+
+.city-img {
+  width: 80%;
+
+.about {
+  color: white;
+}
+
+.about-header {
+  font-family: 'Reenie Beanie', cursive;
+}
+
+.about-container {
+  background-color: transparent;
+}
+
+.test {
+  background-color: #D7D4D1;
+  box-shadow: 2px 2px 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+#about-wayfarer1 {
+  color: #C1BB93;
+  margin: 10px 0 0 30px;
+
+}
+
+#about-wayfarer2 {
+  color: #C1BB93;
+  margin: 10px 0 0 60px;
+}
+
+#about-wayfarer3 {
+  color: #C1BB93;
+  margin: 10px 0 0 90px;
+}
+
+#about-wayfarer4 {
+  color: #C1BB93;
+  margin: 10px 0 0 120px;
+}
+
+#about-wayfarer5 {
+  color: #C1BB93;
+  margin: 10px 0 0 150px;
+}
+
+#about-wayfarer6 {
+  color: #C1BB93;
+  margin: 10px 0 0 180px;
+}
+
+#about-wayfarer7 {
+  color: #C1BB93;
+  margin: 10px 0 0 210px;
+}
+
+.footer-test {
+  color: black;
 }

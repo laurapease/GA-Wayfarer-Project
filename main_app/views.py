@@ -108,17 +108,16 @@ def add_post(request, city_id):
     else: 
         form = PostForm()
         context = {'form': form}
-        # , 'city_slug': city_slug}
         return render(request, 'post/new.html', context)
 
 @login_required
-def delete_post(request, city_id, post_id):
+def delete_post(request, slug, post_id):
     post = Post.objects.get(id=post_id)
 
     if request.user == post.user:
         post.delete()
     
-        return redirect('view_city', city_id = city_id)
+        return redirect('view_city', slug = slug)
 
     else: 
         raise PermissionDenied("You are not authorized to delete")

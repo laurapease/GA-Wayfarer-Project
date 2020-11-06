@@ -47,7 +47,7 @@
                 <p>Are you sure you want to delete this post?</p>
               </div>
               <div class="modal-footer">
-                <a href="{% url 'delete_post' city.id post.id %}" class="modal-close waves-effect waves-green btn-flat">Confirm</a>
+                <a href="{% url 'delete_post' city.slug post.id %}" class="modal-close waves-effect waves-green btn-flat">Confirm</a>
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
               </div>
             </div>

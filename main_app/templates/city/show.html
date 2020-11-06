@@ -25,7 +25,7 @@
             <a href="{% url 'view_post' post.id %}">
               <p>{{post.title}}</a> by {{post.user}}</p>
             </a>
-            <p>{{post.content|truncatechars:7}}</p>
+            <p>{{post.content|truncatechars:1000}}</p>
             
             <a href="{% url 'view_post' post.id %}">
               View rest of post here

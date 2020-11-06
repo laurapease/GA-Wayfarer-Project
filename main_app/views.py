@@ -60,11 +60,13 @@ def user_profile(request, profile_id):
     return render(request, 'profile/index.html', {'profile': profile})
 
 @login_required
-def profile(request, slug):#also known as profile index
+def profile(request):#also known as profile index
     profile = Profile.objects.get(user = request.user)
     posts = Post.objects.filter(user = request.user)
     
-    context = {'profile': profile, 'posts':posts}
+    cities_with_uniq_names = Post.objects.all().distinct('city')
+
+    context = {'profile': profile, 'posts':posts, 'cities_with_uniq_names': cities_with_uniq_names}
     return render(request,'profile/index.html', context)
 
 @login_required
@@ -115,7 +117,7 @@ def delete_post(request, city_id, post_id):
     if request.user == post.user:
         post.delete()
     
-        return redirect('view_city', city_id=city_id)
+        return redirect('view_city', city_id = city_id)
 
     else: 
         raise PermissionDenied("You are not authorized to delete")
@@ -156,10 +158,10 @@ def cities_index(request):
     return render(request, 'city/index.html', context)
 
 @login_required
-def view_city(request, slug):
+def view_city(request, city_id):
 
-    city = City.objects.get(slug=slug)
-    posts = Post.objects.filter(city=city).order_by('-timestamp')
+    city = City.objects.get(id = city_id)
+    posts = Post.objects.filter(city_id =city_id).order_by('-timestamp')
     paginator = Paginator(posts, 10)
     page = request.GET.get('page')
     posts = paginator.get_page(page)

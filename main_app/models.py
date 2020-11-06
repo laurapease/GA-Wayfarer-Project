@@ -9,12 +9,12 @@ from django.utils.text import slugify
 class City(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='images')
-    slug = models.SlugField(max_length=100, unique=True)
+    # slug = models.SlugField(max_length=100, unique=True)
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name, allow_unicode=True)
-        return super(City, self).save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if not self.slug:
+    #         self.slug = slugify(self.name, allow_unicode=True)
+    #     return super(City, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -25,11 +25,6 @@ class Profile(models.Model):
     join_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(auto_now=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=100, unique=True)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.user.username, allow_unicode=True)
-        return super(Profile, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.user.username

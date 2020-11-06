@@ -6,7 +6,7 @@ Profile Home
 
 {% block content %}
 
-  <h1>Profile Home</h1>
+  <h1 class="profile-name">{{ user.username }}</h1>
 
   <div class="row">
     <div class="col s12">
@@ -15,7 +15,7 @@ Profile Home
             <span class="card-title">{{ profile.name }}</span>
             <p>Current city: {{profile.current_city}}</p>
             <p>Joined on: {{ profile.join_date }}</p>
-            <img src="{{ profile.avatar.url }}">
+            <img class="avatar-img" src="{{ profile.avatar.url }}">
           </div>
           <a href="{% url 'edit_profile' profile.id %}" type="submit" class="btn-small">
             Edit

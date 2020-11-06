@@ -2,15 +2,13 @@
 {% load static %}
 
 {% block title %}
-Profile Home
+{{ user.username }}
 {% endblock %}
 
 {% block content %}
 
-  <h1 class="profile-name">{{ user.username }}</h1>
-
   <div class="row">
-    <div class="col s12">
+    <div class="col s4">
       <div class="card">
           <div class="card-content">
             <span class="card-title">{{ profile.name }}</span>
@@ -22,24 +20,25 @@ Profile Home
             <img src="{% static 'wayfarer/images/defaultimg.jpg' %}">
     {% endif %}
           </div>
-          <a href="{% url 'edit_profile' profile.id %}" type="submit" class="btn-small">
-            Edit
-          </a>
+          </div>
+      </div>
       </div>
   
-      <h3>Posts by {{ user.username }}</h3>
+  <div class="col s8">
+      <h3 class="profile-posts-header">Posts by {{ user.username }}</h3>
       <div class="card">
         <div class="card-content">
+        <ol>
           {% for post in posts %}
-          <a href="{% url 'view_post' post.id %}">
-            <span class="card-title">{{ post.title }}</span>
-          </a>
-          <a href="{% url 'view_city' post.city.id %}">{{ post.city }}</a>
-        </div>
+          <li><a href="{% url 'view_post' post.id %}">
+            <p>{{ post.title }}</p>
+          </a></li>
           {% endfor %}
+          </ol>
+          </div>
+        </div>
       </div>
     </div>
-    
   </div>
 
 {% endblock %}

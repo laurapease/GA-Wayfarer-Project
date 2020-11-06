@@ -19,12 +19,21 @@ nav {
   box-shadow: none;
 }
 
+a {
+  color: #b36b5e;
+}
+
+a:hover {
+  color: black;
+  transition: 0.2s;
+}
 
 footer {
   padding-top: 0;
   text-align: right;
   font-family: 'Reenie Beanie', cursive;
   font-size: 22px;
+  position: bottom;
 }
 
 .page-footer {
@@ -80,6 +89,62 @@ footer {
   transition: .3s;
 }
 
+
+.profile-header {
+  font-size: 28px;
+  text-transform: lowercase;
+}
+
+.profile-avatar {
+  width: 95%;
+  height: 95%;
+  border-radius: 10%;
+  margin-right: 0;
+}
+
+.profile-posts-header {
+  font-size: 40px;
+  text-transform: lowercase;
+}
+
+.profile-card {
+  text-align: center;
+  width: 100%;
+  border-radius: 50px;
+}
+
+.edit-btn {
+  text-align: center;
+  padding: 25px;
+}
+
+.btn-small {
+  background-color: #b36b5e;
+  color: black;
+  border-radius: 25px;
+}
+
+.btn-small:hover {
+  background-color: #b36b5e;
+  color: white;
+}
+
+#id_avatar {
+  padding: 20px;
+}
+
+label {
+  font-size: 15px;
+}
+
+.button-box {
+  padding: 10px;
+  text-align: right;
+}
+
+.city-img {
+  width: 80%;
+
 .about {
   color: white;
 }
@@ -133,6 +198,3 @@ footer {
   margin: 10px 0 0 210px;
 }
 
-.footer-test {
-  color: black;
-}

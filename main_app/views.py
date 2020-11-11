@@ -64,9 +64,9 @@ def profile(request):#also known as profile index
     profile = Profile.objects.get(user = request.user)
     posts = Post.objects.filter(user = request.user)
     
-    cities_with_uniq_names = Post.objects.all().distinct('city')
+    comment_count = Comment.objects.filter(user = request.user).count()
 
-    context = {'profile': profile, 'posts':posts, 'cities_with_uniq_names': cities_with_uniq_names}
+    context = {'profile': profile, 'posts':posts, 'comment_count': comment_count}
     return render(request,'profile/index.html', context)
 
 @login_required
@@ -92,7 +92,7 @@ def edit_profile(request, profile_id):
 def view_post(request, post_id):
     post = Post.objects.get(id=post_id)
     comment_form = CommentForm()
-    comment_count = Comment.objects.count()
+    comment_count = Comment.objects.filter(post_id = post_id).count()
 
     context = {'post': post, 'comment_form': comment_form, 'comment_count': comment_count}
     return render(request, 'post/show.html', context)

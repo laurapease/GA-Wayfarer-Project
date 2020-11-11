@@ -199,3 +199,14 @@ label {
   margin: 10px 0 0 210px;
 }
 
+.edit-button {
+  cursor: pointer;
+}
+
+.edit-form {
+  display: none;
+}
+
+.edit-comment {
+  display: block
+}

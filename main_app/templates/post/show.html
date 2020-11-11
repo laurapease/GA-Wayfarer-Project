@@ -6,10 +6,9 @@ Post
 
 {% block content %}
 
-  <h2>{{ post.title }}</h2>
-
   <div class="row">
     <div class="col s6">
+      <h2>{{ post.title }}</h2>
       <div class="card">
           <div class="card-content">
           <img src="{{post.user.profile.avatar.url}}" width=50 height=70>
@@ -21,9 +20,19 @@ Post
           </div>
         </div>
       <h6>See more posts about <a href="{% url 'view_city' post.city.slug %}">{{ post.city }}</a></h6>
+    
+      <h4>Add Comment</h4>
+      <div class="card">
+        <form action="{% url 'add_comment' post.id %}" method="POST">
+          {% csrf_token %}
+          {{ comment_form.as_p }}
+          <input type="submit" class="btn" value="Add Comment">
+        </form>
+      </div>
     </div>
-    <h3>View Comments (<span>{{comment_count}}</span>)</h3>
+    
     <div class="col s6">
+      <h4>View Comments (<span>{{comment_count}}</span>)</h4>
       {% for comment in post.comment_set.all %}
       <div class="card">
           <div class="card-content">
@@ -37,20 +46,18 @@ Post
           <a href="{% url 'delete_comment' post.id comment.id %}" type="submit" class="btn-small red darken-4">
             Delete Comment
           </a>
-          <a href="{% url 'edit_comment' post.id %}" type="submit" class="btn-small">
+          <a class="btn-small edit-button">
             Edit Comment
           </a>
+          <form class="edit-form" action="{% url 'edit_comment' post.id comment.id %}" method="POST">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <input type="submit" class="btn" value="Edit Comment">
+          </form>
           {% endif %}
           </div>
         </div>
         {% endfor %}
-      <div class="card">
-        <form action="{% url 'add_comment' post.id %}" method="POST">
-          {% csrf_token %}
-          {{ comment_form.as_p }}
-          <input type="submit" class="btn" value="Add Comment">
-        </form>
-      </div>
     </div>
   </div>
 

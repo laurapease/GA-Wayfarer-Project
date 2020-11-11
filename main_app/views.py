@@ -134,14 +134,6 @@ def edit_post(request, post_id):
                 updated_post = post_form.save()
                 return redirect('view_post', updated_post.id)
 
-    # if request.user == post.user:
-
-    #     if request.method == 'POST':
-    #         post_form = PostForm(request.POST, instance=post)
-    #         if post_form.is_valid():
-    #             updated_post = post_form.save()
-    #             return redirect('view_post', updated_post.id)
-
         else: 
             form = PostForm(instance=post)
             context = {'form': form}
@@ -195,22 +187,14 @@ def delete_comment(request, post_id, comment_id):
         return redirect('view_post', post_id = post_id)
 
 @login_required
-def edit_comment(request, comment_id):
+def edit_comment(request, post_id, comment_id):
     comment = Comment.objects.get(id=comment_id)   
     if request.user == comment.user: 
         if request.method == 'POST':
             comment_form = CommentForm(request.POST, instance=comment)
             if comment_form.is_valid():
                 updated_comment = comment_form.save()
-                return redirect('view_post', updated_comment.id)
-
-    # if request.user == post.user:
-
-    #     if request.method == 'POST':
-    #         post_form = PostForm(request.POST, instance=post)
-    #         if post_form.is_valid():
-    #             updated_post = post_form.save()
-    #             return redirect('view_post', updated_post.id)
+                return redirect('view_post', post_id)
 
         else: 
             comment_form = CommentForm(instance=comment)

@@ -184,14 +184,14 @@ def add_comment(request, post_id):
 
     return redirect('view_post', post_id)
 
-# @login_required
-# def delete_comment(request, post_id, comment_id):
-#     comment = Comment.objects.get(comment_id=comment_id)
+@login_required
+def delete_comment(request, post_id, comment_id):
+    comment = Comment.objects.get(comment_id=comment_id)
 
-#     if request.user == comment.user:
-#         comment.delete()
+    if request.user == comment.user:
+        comment.delete()
     
-#         return redirect('view_post', post_id = post_id)
+        return redirect('view_post', post_id = post_id)
 
 @login_required
 def edit_comment(request, comment_id):

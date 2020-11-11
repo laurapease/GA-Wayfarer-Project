@@ -33,7 +33,7 @@ urlpatterns = [
 
     path('post/<int:post_id>/add_comment/', views.add_comment, name='add_comment'),
     path('comment/<int:comment_id>/edit/', views.edit_comment, name='edit_comment'),
-    path('post/<int:post_id>/remove_post/<int:comment_id>/', views.delete_comment, name='delete_comment'),
+    path('post/<int:post_id>/remove_comment/<int:comment_id>/', views.delete_comment, name='delete_comment'),
 ]
 
 if settings.DEBUG:

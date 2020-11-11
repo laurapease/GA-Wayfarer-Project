@@ -33,13 +33,15 @@ Post
             <a href="{% url 'view_city' post.city.id %}">
             </a>
             <p>Submitted by: {{ post.user }} on {{ comment.timestamp }}</p>
-      {% endfor %}
-          
+          <a href="{% url 'delete_comment' post.id comment.id %}" type="submit" class="btn-small red darken-4">
+            Delete Comment
+          </a>
           <a href="{% url 'edit_comment' post.id %}" type="submit" class="btn-small">
             Edit Comment
           </a>
           </div>
         </div>
+        {% endfor %}
       <div class="card">
         <form action="{% url 'add_comment' post.id %}" method="POST">
           {% csrf_token %}

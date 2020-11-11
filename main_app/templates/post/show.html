@@ -27,18 +27,20 @@ Post
       {% for comment in post.comment_set.all %}
       <div class="card">
           <div class="card-content">
-          <img src="{{post.user.profile.avatar.url}}" width=50 height=70>
+          <img src="{{comment.user.profile.avatar.url}}" width=50 height=70>
           <p><strong>{{ comment.title }}</strong></p>
           <p>"{{ comment.content }}"</p>
             <a href="{% url 'view_city' post.city.id %}">
             </a>
-            <p>Submitted by: {{ post.user }} on {{ comment.timestamp }}</p>
+            <p>Submitted by: {{ comment.user }} on {{ comment.timestamp }}</p>
+          {% if request.user == comment.user %}
           <a href="{% url 'delete_comment' post.id comment.id %}" type="submit" class="btn-small red darken-4">
             Delete Comment
           </a>
           <a href="{% url 'edit_comment' post.id %}" type="submit" class="btn-small">
             Edit Comment
           </a>
+          {% endif %}
           </div>
         </div>
         {% endfor %}

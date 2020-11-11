@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
-from .models import Profile, Post, City
+from .models import Profile, Post, City, Comment
 from .forms import ProfileForm, PostForm, CommentForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -186,7 +186,7 @@ def add_comment(request, post_id):
 
 @login_required
 def delete_comment(request, post_id, comment_id):
-    comment = Comment.objects.get(comment_id=comment_id)
+    comment = Comment.objects.get(id=comment_id)
 
     if request.user == comment.user:
         comment.delete()

@@ -92,8 +92,9 @@ def edit_profile(request, profile_id):
 def view_post(request, post_id):
     post = Post.objects.get(id=post_id)
     comment_form = CommentForm()
+    comment_count = Comment.objects.count()
 
-    context = {'post': post, 'comment_form': comment_form}
+    context = {'post': post, 'comment_form': comment_form, 'comment_count': comment_count}
     return render(request, 'post/show.html', context)
 
 @login_required

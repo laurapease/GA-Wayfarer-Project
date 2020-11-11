@@ -22,7 +22,7 @@ Post
         </div>
       <h6>See more posts about <a href="{% url 'view_city' post.city.slug %}">{{ post.city }}</a></h6>
     </div>
-    <h3>View Comments</h3>
+    <h3>View Comments (<span>{{comment_count}}</span>)</h3>
     <div class="col s6">
       {% for comment in post.comment_set.all %}
       <div class="card">

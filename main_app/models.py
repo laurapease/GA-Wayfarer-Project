@@ -38,3 +38,13 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+class Comment(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField(max_length=2000)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponse
 from .models import Profile, Post, City
-from .forms import ProfileForm, PostForm
+from .forms import ProfileForm, PostForm, CommentForm
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
@@ -91,8 +91,9 @@ def edit_profile(request, profile_id):
 @login_required
 def view_post(request, post_id):
     post = Post.objects.get(id=post_id)
+    comment_form = CommentForm()
 
-    context = {'post': post}
+    context = {'post': post, 'comment_form': comment_form}
     return render(request, 'post/show.html', context)
 
 @login_required
@@ -132,13 +133,13 @@ def edit_post(request, post_id):
                 updated_post = post_form.save()
                 return redirect('view_post', updated_post.id)
 
-    if request.user == post.user:
+    # if request.user == post.user:
 
-        if request.method == 'POST':
-            post_form = PostForm(request.POST, instance=post)
-            if post_form.is_valid():
-                updated_post = post_form.save()
-                return redirect('view_post', updated_post.id)
+    #     if request.method == 'POST':
+    #         post_form = PostForm(request.POST, instance=post)
+    #         if post_form.is_valid():
+    #             updated_post = post_form.save()
+    #             return redirect('view_post', updated_post.id)
 
         else: 
             form = PostForm(instance=post)
@@ -168,3 +169,49 @@ def view_city(request, slug):
     
     context = {'city': city, 'posts': posts}
     return render(request, 'city/show.html', context)
+
+#-------------------------- COMMENTS
+
+@login_required
+def add_comment(request, post_id):
+    comment_form = CommentForm(request.POST)
+
+    if comment_form.is_valid():
+        new_comment = comment_form.save(commit=False)
+        new_comment.user = request.user
+        new_comment.post_id = post_id
+        new_comment.save()
+
+    return redirect('view_post', post_id)
+
+# @login_required
+# def delete_comment(request, post_id, comment_id):
+#     comment = Comment.objects.get(comment_id=comment_id)
+
+#     if request.user == comment.user:
+#         comment.delete()
+    
+#         return redirect('view_post', post_id = post_id)
+
+@login_required
+def edit_comment(request, comment_id):
+    comment = Comment.objects.get(id=comment_id)   
+    if request.user == comment.user: 
+        if request.method == 'POST':
+            comment_form = CommentForm(request.POST, instance=comment)
+            if comment_form.is_valid():
+                updated_comment = comment_form.save()
+                return redirect('view_post', updated_comment.id)
+
+    # if request.user == post.user:
+
+    #     if request.method == 'POST':
+    #         post_form = PostForm(request.POST, instance=post)
+    #         if post_form.is_valid():
+    #             updated_post = post_form.save()
+    #             return redirect('view_post', updated_post.id)
+
+        else: 
+            comment_form = CommentForm(instance=comment)
+            context = {'comment_form': comment_form}
+            return render(request, 'post/show.html', context)

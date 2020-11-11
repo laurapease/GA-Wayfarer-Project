@@ -9,7 +9,7 @@ Post
   <h2>{{ post.title }}</h2>
 
   <div class="row">
-    <div class="col s12">
+    <div class="col s6">
       <div class="card">
           <div class="card-content">
           <img src="{{post.user.profile.avatar.url}}" width=50 height=70>
@@ -21,6 +21,32 @@ Post
           </div>
         </div>
       <h6>See more posts about <a href="{% url 'view_city' post.city.slug %}">{{ post.city }}</a></h6>
+    </div>
+    <h3>View Comments</h3>
+    <div class="col s6">
+      {% for comment in post.comment_set.all %}
+      <div class="card">
+          <div class="card-content">
+          <img src="{{post.user.profile.avatar.url}}" width=50 height=70>
+          <p><strong>{{ comment.title }}</strong></p>
+          <p>"{{ comment.content }}"</p>
+            <a href="{% url 'view_city' post.city.id %}">
+            </a>
+            <p>Submitted by: {{ post.user }} on {{ comment.timestamp }}</p>
+      {% endfor %}
+          
+          <a href="{% url 'edit_comment' post.id %}" type="submit" class="btn-small">
+            Edit Comment
+          </a>
+          </div>
+        </div>
+      <div class="card">
+        <form action="{% url 'add_comment' post.id %}" method="POST">
+          {% csrf_token %}
+          {{ comment_form.as_p }}
+          <input type="submit" class="btn" value="Add Comment">
+        </form>
+      </div>
     </div>
   </div>
 

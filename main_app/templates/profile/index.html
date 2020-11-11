@@ -15,14 +15,15 @@
             <p>Current City: {{profile.current_city}}</p>
             <p>Join Date: {{ profile.join_date }}</p>
     {% if profile.avatar %}
-            <img src="{{ profile.avatar.url }}">
+            <img class="profile-avatar" src="{{ profile.avatar.url }}">
     {% else %}
             <img src="{% static 'wayfarer/images/defaultimg.jpg' %}">
     {% endif %}
-          </div>
+            <a href="{% url 'edit_profile' profile.id %}" type="submit" class="btn-small">
+            Edit Profile</a>
           </div>
       </div>
-      </div>
+    </div>
   
   <div class="col s8">
       <h3 class="profile-posts-header">Posts by {{ user.username }}</h3>
@@ -34,11 +35,11 @@
             <p>{{ post.title }}</p>
           </a></li>
           {% endfor %}
-          </ol>
-          </div>
+        </ol>
         </div>
       </div>
-    </div>
+  </div>
+  <h4>Comments Left: (<span>{{comment_count}}</span>)</h4>
   </div>
 
 {% endblock %}
